@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar - Springfield Academy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="logo">
+            <h1><a href="index.html">Springfield Academy</a></h1>
+        </div>
+        <button class="menu-toggle">☰</button>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="admissions.html">Admissions</a></li>
+                <li><a href="curriculum.html">Curriculum</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="calendar.html" class="active">Calendar</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin/admin-login.html" style="font-size: 0.8em; opacity: 0.7;">Admin</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="breadcrumb">
+    <div class="container">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li>Calendar</li>
+        </ul>
+    </div>
+</div>
+
+<section>
+    <div class="container">
+        <h2 class="section-title">School Calendar</h2>
+        
+        <div class="grid" style="grid-template-columns: 1fr 2fr; gap: 40px;">
+            <div>
+                <h3>Term Dates</h3>
+                <div class="card" style="margin-top: 20px;">
+                    <h4>Autumn Term</h4>
+                    <p>Sep 4 - Dec 20</p>
+                    <hr style="margin: 10px 0; border: 0; border-top: 1px solid #eee;">
+                    <h4>Spring Term</h4>
+                    <p>Jan 6 - Apr 4</p>
+                    <hr style="margin: 10px 0; border: 0; border-top: 1px solid #eee;">
+                    <h4>Summer Term</h4>
+                    <p>Apr 22 - Jul 18</p>
+                </div>
+            </div>
+            <div>
+                <h3>Upcoming Events</h3>
+                <div id="calendar-list" style="margin-top: 20px;">
+                    <!-- Loaded via JS -->
+                    <p>Loading events...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Springfield Academy</h3>
+                <p>123 Education Lane<br>Springfield, SP1 2AB</p>
+                <p>Phone: (0123) 456 7890</p>
+                <p>Email: office@springfield.edu</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="policies.html">Policies</a></li>
+                    <li><a href="funding.html">Funding</a></li>
+                    <li><a href="performance.html">Performance</a></li>
+                    <li><a href="sen.html">SEN / Disability</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="staff.html">Staff Directory</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="parents.html">Parent Resources</a></li>
+                </ul>
+                <div class="social-icons">
+                    <a href="#">f</a>
+                    <a href="#">t</a>
+                    <a href="#">i</a>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+            <p>&copy; 2025 Springfield Academy. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const list = document.getElementById('calendar-list');
+        const events = JSON.parse(localStorage.getItem('eventsData') || '[]');
+        
+        if(events.length === 0) {
+            list.innerHTML = '<p>No events scheduled.</p>';
+            return;
+        }
+
+        list.innerHTML = events
+            .sort((a,b) => new Date(a.date) - new Date(b.date))
+            .map(item => `
+            <div class="card" style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px;">
+                <div style="background: var(--primary-color); color: white; padding: 10px; border-radius: 5px; text-align: center; min-width: 80px;">
+                    <div style="font-size: 0.8rem;">${new Date(item.date).toLocaleString('default', { month: 'short' }).toUpperCase()}</div>
+                    <div style="font-size: 1.5rem; font-weight: bold;">${new Date(item.date).getDate()}</div>
+                </div>
+                <div>
+                    <h4 style="margin: 0; color: var(--primary-color); font-size: 1.1rem;">${item.title}</h4>
+                    <p style="margin: 5px 0 0; color: #666;">${item.location}</p>
+                </div>
+            </div>
+        `).join('');
+    });
+</script>
+</body>
+</html>

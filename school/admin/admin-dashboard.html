@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Springfield Academy</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="logo">
+            <h1>Admin Dashboard</h1>
+        </div>
+        <button onclick="logout()" class="btn" style="background: var(--accent-color);">Logout</button>
+    </div>
+</header>
+
+<div class="dashboard-nav">
+    <ul>
+        <li><a href="#news" class="active">News</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#staff">Staff</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="../index.html" target="_blank">View Site</a></li>
+    </ul>
+</div>
+
+<div class="container">
+    
+    <!-- News Management -->
+    <section id="news" class="admin-section">
+        <h2>Manage News</h2>
+        <form id="add-news-form">
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" name="title" required>
+            </div>
+            <div class="form-group">
+                <label>Date</label>
+                <input type="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label>Summary</label>
+                <input type="text" name="summary" required>
+            </div>
+            <div class="form-group">
+                <label>Content</label>
+                <textarea name="content" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn">Add News</button>
+        </form>
+        
+        <div id="admin-news-list" class="admin-list">
+            <!-- JS loaded -->
+        </div>
+    </section>
+
+    <!-- Events Management -->
+    <section id="events" class="admin-section">
+        <h2>Manage Calendar</h2>
+        <form id="add-event-form">
+            <div class="form-group">
+                <label>Event Title</label>
+                <input type="text" name="title" required>
+            </div>
+            <div class="form-group">
+                <label>Date</label>
+                <input type="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label>Location</label>
+                <input type="text" name="location" required>
+            </div>
+            <button type="submit" class="btn">Add Event</button>
+        </form>
+        
+        <div id="admin-events-list" class="admin-list">
+            <!-- JS loaded -->
+        </div>
+    </section>
+
+    <!-- Staff Management -->
+    <section id="staff" class="admin-section">
+        <h2>Manage Staff</h2>
+        <form id="add-staff-form">
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" name="name" required>
+            </div>
+            <div class="form-group">
+                <label>Role</label>
+                <input type="text" name="role" required>
+            </div>
+            <button type="submit" class="btn">Add Staff Member</button>
+        </form>
+        
+        <div id="admin-staff-list" class="admin-list">
+            <!-- JS loaded -->
+        </div>
+    </section>
+
+    <!-- Gallery Management -->
+    <section id="gallery" class="admin-section">
+        <h2>Manage Gallery</h2>
+        <form id="add-gallery-form">
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" name="title" required>
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <select name="category">
+                    <option value="Events">Events</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Clubs">Clubs</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Image URL</label>
+                <input type="text" name="image" placeholder="https://placehold.co/400x300" required>
+            </div>
+            <button type="submit" class="btn">Add Image</button>
+        </form>
+        
+        <div id="admin-gallery-list" class="admin-list">
+            <!-- JS loaded -->
+        </div>
+    </section>
+
+</div>
+
+<script src="../admin.js"></script>
+</body>
+</html>

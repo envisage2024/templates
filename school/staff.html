@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Directory - Springfield Academy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="logo">
+            <h1><a href="index.html">Springfield Academy</a></h1>
+        </div>
+        <button class="menu-toggle">☰</button>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="admissions.html">Admissions</a></li>
+                <li><a href="curriculum.html">Curriculum</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="calendar.html">Calendar</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin/admin-login.html" style="font-size: 0.8em; opacity: 0.7;">Admin</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="breadcrumb">
+    <div class="container">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li>Staff Directory</li>
+        </ul>
+    </div>
+</div>
+
+<section>
+    <div class="container">
+        <h2 class="section-title">Our Staff</h2>
+        
+        <div id="staff-list" class="grid">
+            <!-- Loaded via JS -->
+            <p>Loading staff...</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Springfield Academy</h3>
+                <p>123 Education Lane<br>Springfield, SP1 2AB</p>
+                <p>Phone: (0123) 456 7890</p>
+                <p>Email: office@springfield.edu</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="policies.html">Policies</a></li>
+                    <li><a href="funding.html">Funding</a></li>
+                    <li><a href="performance.html">Performance</a></li>
+                    <li><a href="sen.html">SEN / Disability</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="staff.html">Staff Directory</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="parents.html">Parent Resources</a></li>
+                </ul>
+                <div class="social-icons">
+                    <a href="#">f</a>
+                    <a href="#">t</a>
+                    <a href="#">i</a>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+            <p>&copy; 2025 Springfield Academy. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const list = document.getElementById('staff-list');
+        // Seed staff if empty
+        let staff = JSON.parse(localStorage.getItem('staffData') || '[]');
+        if (staff.length === 0) {
+            staff = [
+                { 
+                    name: 'Mrs. S. Principal', 
+                    role: 'Head Teacher',
+                    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400' 
+                },
+                { 
+                    name: 'Mr. A. Smith', 
+                    role: 'Deputy Head',
+                    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400'
+                },
+                { 
+                    name: 'Mrs. J. Doe', 
+                    role: 'Head of English',
+                    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=400'
+                }
+            ];
+            localStorage.setItem('staffData', JSON.stringify(staff));
+        }
+        
+        list.innerHTML = staff.map(item => `
+            <div class="card" style="text-align: center;">
+                <div style="width: 120px; height: 120px; margin: 0 auto 1.5rem; border-radius: 50%; overflow: hidden; border: 4px solid hsl(var(--border)); background: hsl(var(--muted)); display: flex; align-items: center; justify-content: center;">
+                    ${item.image ? `<img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.parentElement.innerHTML = '<span style=\\'color: hsl(var(--muted-foreground)); font-size: 0.8rem; font-weight: 600;\\'>PHOTO</span>'">` : '<span style="color: hsl(var(--muted-foreground)); font-size: 0.8rem; font-weight: 600;">PHOTO</span>'}
+                </div>
+                <h3>${item.name}</h3>
+                <p>${item.role}</p>
+                <a href="contact.html?staff=${encodeURIComponent(item.name)}" class="btn" style="margin-top: 15px; font-size: 0.8rem; padding: 5px 10px;">Contact</a>
+            </div>
+        `).join('');
+    });
+</script>
+</body>
+</html>
