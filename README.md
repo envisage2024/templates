@@ -3,6 +3,8 @@
 This is a collection of modern, responsive website templates built using HTML, CSS, and JavaScript.
 This repository is open to everyone — you are free to view, edit, use, and contribute templates for personal, academic, or commercial projects.
 
+[Check out the Live Preview](envisage2024.github.io/templates/)
+
 ### Purpose
 This repository exists to:
 - Provide ready-to-use website templates
