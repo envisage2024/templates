@@ -64,10 +64,10 @@ You can contribute by:
 
 ## Folder Structure (Example)
 /templates  
-  /restaurant1  
-  /school1  
-  /restaurant1  
-  /portfolio1  
+&emsp;/restaurant1  
+&emsp;/school1  
+&emsp;/restaurant1  
+&emsp;/portfolio1  
 
 The website type should form the base name of the folder, for example "school" for a school website. Followed by the latest available number acting as a template count for that website type. That makes a new template folder adopt a name like "portfolio3"
 
